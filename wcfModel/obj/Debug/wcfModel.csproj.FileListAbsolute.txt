@@ -1,0 +1,6 @@
+E:\Project\1yygWcf\trunk\wcf.1yyg.com\wcfModel\bin\Debug\wcfModel.dll
+E:\Project\1yygWcf\trunk\wcf.1yyg.com\wcfModel\bin\Debug\wcfModel.pdb
+E:\Project\1yygWcf\trunk\wcf.1yyg.com\wcfModel\bin\Debug\Newtonsoft.Json.dll
+E:\Project\1yygWcf\trunk\wcf.1yyg.com\wcfModel\obj\Debug\wcfModel.csprojResolveAssemblyReference.cache
+E:\Project\1yygWcf\trunk\wcf.1yyg.com\wcfModel\obj\Debug\wcfModel.dll
+E:\Project\1yygWcf\trunk\wcf.1yyg.com\wcfModel\obj\Debug\wcfModel.pdb

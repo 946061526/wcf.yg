@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7BDAD328-62EA-449C-AA4D-2DCFF071ECB4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>wcfNSYGShop</RootNamespace>
+    <AssemblyName>wcfDAL</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;testV</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;#testV</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Oracle.DataAccess, Version=2.112.3.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\refDll\Oracle.DataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="YGDataAccess">
+      <HintPath>..\..\refDll\YGDataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="YGWcfUtility">
+      <HintPath>..\..\refDll\YGWcfUtility.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Interface\IDALGongYi.cs" />
+    <Compile Include="Interface\IDALGoodsSort.cs" />
+    <Compile Include="Interface\IDALBaseArea.cs" />
+    <Compile Include="Interface\IDALBrand.cs" />
+    <Compile Include="Interface\IDALGroup.cs" />
+    <Compile Include="Interface\IDALIM.cs" />
+    <Compile Include="Interface\IDALJdBussy.cs" />
+    <Compile Include="Interface\IDALLinks.cs" />
+    <Compile Include="Interface\IDALMap.cs" />
+    <Compile Include="Interface\IDALMonitor.cs" />
+    <Compile Include="Interface\IDALNews.cs" />
+    <Compile Include="Interface\IDALPartner.cs" />
+    <Compile Include="Interface\IDALLive.cs" />
+    <Compile Include="Interface\IDALQQ.cs" />
+    <Compile Include="Interface\IDALOrders.cs" />
+    <Compile Include="Interface\IDALSiteCache.cs" />
+    <Compile Include="Interface\IDALUserContact.cs" />
+    <Compile Include="Interface\IDALAD.cs" />
+    <Compile Include="Interface\IDALBarcode.cs" />
+    <Compile Include="Interface\IDALBase.cs" />
+    <Compile Include="Interface\IDALCart.cs" />
+    <Compile Include="Interface\IDALGoods.cs" />
+    <Compile Include="Interface\IDALPostSingle.cs" />
+    <Compile Include="Interface\IDALUserBuy.cs" />
+    <Compile Include="Interface\IDALUserFriends.cs" />
+    <Compile Include="Interface\IDALUserMsg.cs" />
+    <Compile Include="Interface\IDALUserPoints.cs" />
+    <Compile Include="Interface\IDALUsers.cs" />
+    <Compile Include="Interface\IDALCharFilter.cs" />
+    <Compile Include="Interface\IDALWeixin.cs" />
+    <Compile Include="MSSQL\DALGongYi.cs" />
+    <Compile Include="MSSQL\DALAD.cs" />
+    <Compile Include="MSSQL\DALBarcode.cs" />
+    <Compile Include="MSSQL\DALBase.cs" />
+    <Compile Include="MSSQL\DALBaseArea.cs" />
+    <Compile Include="MSSQL\DALBrand.cs" />
+    <Compile Include="MSSQL\DALCart.cs" />
+    <Compile Include="MSSQL\DALGoods.cs" />
+    <Compile Include="MSSQL\DALGoodsSort.cs" />
+    <Compile Include="MSSQL\DALGroup.cs" />
+    <Compile Include="MSSQL\DALIM.cs" />
+    <Compile Include="MSSQL\DALJdBussy.cs" />
+    <Compile Include="MSSQL\DALLinks.cs" />
+    <Compile Include="MSSQL\DALList.cs" />
+    <Compile Include="MSSQL\DALMap.cs" />
+    <Compile Include="MSSQL\DALMonitor.cs" />
+    <Compile Include="MSSQL\DALNews.cs" />
+    <Compile Include="MSSQL\DALOrders.cs" />
+    <Compile Include="MSSQL\DALPartner.cs" />
+    <Compile Include="MSSQL\DALPostSingle.cs" />
+    <Compile Include="MSSQL\DALLive.cs" />
+    <Compile Include="MSSQL\DALQQ.cs" />
+    <Compile Include="MSSQL\DALSiteCache.cs" />
+    <Compile Include="MSSQL\DALUserBuy.cs" />
+    <Compile Include="MSSQL\DALUserContact.cs" />
+    <Compile Include="MSSQL\DALUserFriends.cs" />
+    <Compile Include="MSSQL\DALUserMsg.cs" />
+    <Compile Include="MSSQL\DALUserPoints.cs" />
+    <Compile Include="MSSQL\DALUsers.cs" />
+    <Compile Include="MSSQL\DALCharFilter.cs" />
+    <Compile Include="MSSQL\DALWeixin.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

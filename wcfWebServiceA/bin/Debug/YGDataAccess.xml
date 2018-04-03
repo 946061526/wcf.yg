@@ -1,0 +1,658 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>YGDataAccess</name>
+    </assembly>
+    <members>
+        <member name="T:NSYGShop.OracleCommonFactory">
+            <summary>
+            创建OracleConnection、OracleCommand、OracleDataAdapter实例的工厂
+            </summary>
+        </member>
+        <member name="F:NSYGShop.OracleCommonFactory.CommandTimeout">
+            <summary>
+            数据库SQL执行超时默认15秒。
+            </summary>
+        </member>
+        <member name="F:NSYGShop.OracleCommonFactory.DBNodeNum">
+            <summary>
+            数据库节点数量
+            </summary>
+        </member>
+        <member name="F:NSYGShop.OracleCommonFactory.IsMonitor">
+            <summary>
+            是否启用日志监控
+            </summary>
+        </member>
+        <member name="F:NSYGShop.OracleCommonFactory.clearPoolNode">
+            <summary>
+            是否清除相应节点的数据库连接池
+            0为不清除，-1为清除全部连接池，大于0则为清除对应节点的连接池
+            </summary>
+        </member>
+        <member name="F:NSYGShop.OracleCommonFactory.ConnectionString">
+            <summary>
+            默认的连接字符串。从webconfig获取。
+            </summary>
+        </member>
+        <member name="M:NSYGShop.OracleCommonFactory.#cctor">
+            <summary>
+            静态初始化，进行默认设置
+            </summary>
+        </member>
+        <member name="M:NSYGShop.OracleCommonFactory.CreateConnection">
+            <summary>
+            根据数据库的连接方式创建一个Connection的实例,默认随机选一个节点
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NSYGShop.OracleCommonFactory.CreateConnection(System.Int32)">
+            <summary>
+            根据数据库的连接方式创建一个Connection的实例，使用指定的节点
+            </summary>
+            <param name="node">节点编号</param>
+            <returns></returns>
+        </member>
+        <member name="M:NSYGShop.OracleCommonFactory.CreateCommand">
+            <summary>
+            根据数据库的连接方式创建一个Command的实例
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NSYGShop.OracleCommonFactory.CreateDataAdapter(Oracle.DataAccess.Client.OracleCommand)">
+            <summary>
+            根据数据库的连接方式创建一个DataAdapter的实例，并设置查询命令
+            </summary>
+            <param name="command">DbCommand</param>
+            <returns></returns>
+        </member>
+        <member name="T:NSYGShop.OracleDataAccessLibrary">
+            <summary>
+            数据访问函数库的基类
+            </summary>
+            <summary>
+            数据访问函数库
+            </summary>
+        </member>
+        <member name="F:NSYGShop.OracleDataAccessLibrary._ErrorMessage">
+            <summary>
+            出现异常时，记录出错信息，包括访问的网页、SQL语句、错误原因、访问时间等
+            对于外部（调用者）来说是只读的，而对于内部或者子类来说是可以写入的，所以protected
+            </summary>
+        </member>
+        <member name="F:NSYGShop.OracleDataAccessLibrary._ExecuteRowCount">
+            <summary>
+            获取执行SQL查询语句后影响的行数
+            对于外部（调用者）来说是只读的，而对于内部或者子类来说是可以写入的，所以protected
+            </summary>
+        </member>
+        <member name="F:NSYGShop.OracleDataAccessLibrary._IsUseTrans">
+            <summary>
+            标记是否已经启用了ado.net 事务
+            </summary>
+        </member>
+        <member name="F:NSYGShop.OracleDataAccessLibrary.Command">
+            <summary>
+            一个DbCommand， 函数库的核心
+            </summary>
+        </member>
+        <member name="F:NSYGShop.OracleDataAccessLibrary._ParameterManager">
+            <summary>
+            处理存储过程参数的管理部分
+            </summary>
+        </member>
+        <member name="F:NSYGShop.OracleDataAccessLibrary._TranManager">
+            <summary>
+            处理事务的管理部分
+            </summary>
+        </member>
+        <member name="F:NSYGShop.OracleDataAccessLibrary._TranIsSetNode">
+            <summary>
+            标记事务是否已初始化
+            </summary>
+        </member>
+        <member name="M:NSYGShop.OracleDataAccessLibrary.#ctor">
+            <summary>
+            初始化。使用配置文件的配置进行创建
+            </summary>
+        </member>
+        <member name="M:NSYGShop.OracleDataAccessLibrary.ConnectionOpen">
+            <summary>
+            在使用DataReader或者开始事务的时候，需要手动打开连接。
+            注意：DataReader使用完毕之后必须手动关闭连接。
+            </summary>
+        </member>
+        <member name="M:NSYGShop.OracleDataAccessLibrary.ConnectionClose">
+            <summary>
+            关闭连接，不清除参数及事务
+            </summary>
+        </member>
+        <member name="M:NSYGShop.OracleDataAccessLibrary.Dispose">
+            <summary>
+            释放资源
+            </summary>
+        </member>
+        <member name="M:NSYGShop.OracleDataAccessLibrary.ClearPool(System.Int32)">
+            <summary>
+            清除连接池
+            </summary>
+            <param name="nodeNum"></param>
+        </member>
+        <member name="M:NSYGShop.OracleDataAccessLibrary.ClearPool">
+            <summary>
+            清除所有连接池
+            </summary>
+        </member>
+        <member name="M:NSYGShop.OracleDataAccessLibrary.SetCommand(System.String)">
+            <summary>
+            设置Command的CommandText和CommandType
+            </summary>
+            <param name="commandText"></param>
+        </member>
+        <member name="M:NSYGShop.OracleDataAccessLibrary.SetErrorMessage(System.String,System.Int32,System.String,System.String)">
+            <summary>
+            当发生异常时，所作的处理
+            </summary>
+            <param name="functionName">函数名称</param>
+            <param name="commandText">查询语句或者存储过程</param>
+            <param name="message">错误信息</param>
+        </member>
+        <member name="M:NSYGShop.OracleDataAccessLibrary.ExecuteFillDataSet(System.String)">
+            <summary>
+            运行SQL语句、参数化的SQL语句或者存储过程，返回DataSet。
+            可以传入多条查询语句，返回的DataSet里会有多个DataTable
+            </summary>
+            <param name="text">查询语句或者存储过程的名称。
+            比如select * from tableName1 select * from tableName2
+            或者 pro_xxxGetDataSet
+            </param>
+            <returns>返回DataSet</returns>
+        </member>
+        <member name="M:NSYGShop.OracleDataAccessLibrary.ExecuteFillDataTable(System.String)">
+            <summary>
+            运行SQL语句、参数化的SQL语句或者存储过程，返回DataTable记录集
+            </summary>
+            <param name="text">查询语句或者存储过程的名称。
+            比如select * from tableName1 
+            或者 pro_xxxGetDataTable
+            </param>
+            <returns></returns>
+        </member>
+        <member name="M:NSYGShop.OracleDataAccessLibrary.ExecuteString(System.String)">
+            <summary>
+            运行SQl语句返回第一条记录的第一个字段的值，无则返回Null。区分内部函数调用的情况
+            </summary>
+            <param name="text"></param>
+            <returns>Null</returns>
+        </member>
+        <member name="M:NSYGShop.OracleDataAccessLibrary.ExecuteReader(System.String)">
+            <summary>
+            运行SQl语句返回查询结果，无则返回Null。区分内部函数调用的情况
+            </summary>
+            <param name="text"></param>
+            <returns>Null</returns>
+        </member>
+        <member name="M:NSYGShop.OracleDataAccessLibrary.ExecuteStringsBySingleRow(System.String)">
+            <summary>
+            运行SQl语句返回第一条记录的数组。返回字符串数组,无则返回Null
+            </summary>
+            <param name="text">查询语句。比如select top 1 * from tableName</param>
+            <returns></returns>
+        </member>
+        <member name="M:NSYGShop.OracleDataAccessLibrary.ExecuteStringsByColumns(System.String)">
+            <summary>
+            运行SQl语句返回每一条记录的第一个字段的值。返回字符串数组
+            </summary>
+            <param name="text">查询语句。比如select myName from tableName</param>
+            <returns></returns>
+        </member>
+        <member name="M:NSYGShop.OracleDataAccessLibrary.ExecuteNonQuery(System.String)">
+            <summary>
+            运行SQL查询语句，不返回记录集。用于添加、修改、删除等操作。区分内部函数调用的情况
+            </summary>
+            <param name="sql">查询语句。比如insert into tableName 、update tableName...</param>
+            <returns></returns>
+        </member>
+        <member name="M:NSYGShop.OracleDataAccessLibrary.ExecuteNonQuery(System.String,System.Int32@)">
+            <summary>
+            运行SQL查询语句，不返回记录集。用于添加、修改、删除等操作。区分内部函数调用的情况
+            </summary>
+            <param name="sql">查询语句。比如insert into tableName 、update tableName...</param>
+            <param name="executeState">执行状态码 1成功， -10默认，－11执行超时，－12执行异常</param>
+        </member>
+        <member name="M:NSYGShop.OracleDataAccessLibrary.ExecuteExists(System.String)">
+            <summary>
+            执行一条SQL语句，看是否能查到记录 有：返回true；没有返回false，用于判断是否重名
+            </summary>
+            <param name="sql">查询语句。比如select ID from tableName where userName='aa'</param>
+            <returns></returns>
+        </member>
+        <member name="P:NSYGShop.OracleDataAccessLibrary.ErrorMessage">
+            <summary>
+            获取出错信息，没有错误的话返回string.Empty 
+            </summary>
+        </member>
+        <member name="P:NSYGShop.OracleDataAccessLibrary.ExecuteRowCount">
+            <summary>
+            获取执行SQL语句影响的行数
+            </summary>
+        </member>
+        <member name="P:NSYGShop.OracleDataAccessLibrary.IsUseTrans">
+            <summary>
+            标记是否已经启用了ado.net 事务
+            </summary>
+        </member>
+        <member name="P:NSYGShop.OracleDataAccessLibrary.TranIsSetNode">
+            <summary>
+            是否已分配节点，即完成初始化事务
+            </summary>
+        </member>
+        <member name="P:NSYGShop.OracleDataAccessLibrary.TranManager">
+            <summary>
+            加载事务处理的实例。用这个实例来添加事务处理的参数
+            </summary>
+        </member>
+        <member name="P:NSYGShop.OracleDataAccessLibrary.ParameterManager">
+            <summary>
+            加载处理存储过程参数的实例。用这个实例来添加存储过程的参数
+            </summary>
+        </member>
+        <member name="T:NSYGShop.DBNodeConfig">
+            <summary>
+            结点配置处理类
+            </summary>
+        </member>
+        <member name="F:NSYGShop.DBNodeConfig.configUpdateTime">
+            <summary>
+            数据库SQL执行超时默认15秒。
+            </summary>
+        </member>
+        <member name="F:NSYGShop.DBNodeConfig.ModuleConfig">
+            <summary>
+            过程结点配置列表
+            </summary>
+        </member>
+        <member name="F:NSYGShop.DBNodeConfig.UpdateLock">
+            <summary>
+            更新锁对象
+            </summary>
+        </member>
+        <member name="M:NSYGShop.DBNodeConfig.#cctor">
+            <summary>
+            构造方法
+            </summary>
+        </member>
+        <member name="M:NSYGShop.DBNodeConfig.GetNodeByModule(System.String)">
+            <summary>
+            根据模块编号获取分配的节点编号
+            </summary>
+            <param name="Module">模块编号</param>
+            <returns></returns>
+        </member>
+        <member name="M:NSYGShop.DBNodeConfig.UpdateNodeConfig(System.Data.DataTable)">
+            <summary>
+            更新节点分配表
+            </summary>
+            <param name="configTable">节点分配表</param>
+            <returns></returns>
+        </member>
+        <member name="M:NSYGShop.DBNodeConfig.IsUpdate">
+            <summary>
+            判断是否需要更新节点分配表信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NSYGShop.DBNodeConfig.RollbackUpdateTime">
+            <summary>
+            回滚更新时间
+            </summary>
+        </member>
+        <member name="M:NSYGShop.DBNodeConfig.ReadClearPoolConfig">
+            <summary>
+            读取是否清除相应节点的数据库连接池配置
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:NSYGShop.OracleManagerParameter">
+            <summary>
+            处理OracleParameterSQL语句的参数
+            </summary>
+        </member>
+        <member name="F:NSYGShop.OracleManagerParameter._Dal">
+            <summary>
+            数据访问函数库的实例，主要是想操作Command
+            </summary>
+        </member>
+        <member name="M:NSYGShop.OracleManagerParameter.ClearOrcParameter">
+            <summary>
+            清除Command的存储过程的参数。
+            </summary>
+        </member>
+        <member name="M:NSYGShop.OracleManagerParameter.GetOrcParameter(System.Int32)">
+            <summary>
+            按序号返回参数值，一般在执行完存储过程后使用
+            </summary>
+            <param name="ParameterIndex">序号</param>
+            <returns>返回参数的内容</returns>
+        </member>
+        <member name="M:NSYGShop.OracleManagerParameter.GetOrcParameter(System.String)">
+            <summary>
+            按名称返回参数值，一般在执行完存储过程后使用
+            </summary>
+            <param name="ParameterName">参数名称。比如 @UserName</param>
+            <returns>返回参数的内容</returns>
+        </member>
+        <member name="M:NSYGShop.OracleManagerParameter.AddOrcNewInParameter(System.String,System.String)">
+            <summary>
+            Oracle添加String输入参数
+            </summary>
+            <param name="paraName">参数名</param>
+            <param name="paraValue">参数值</param>
+        </member>
+        <member name="M:NSYGShop.OracleManagerParameter.AddOrcNewInParameter(System.String,System.String,System.Int32)">
+            <summary>
+            Oracle添加String输入参数
+            </summary>
+            <param name="paraName">参数名</param>
+            <param name="paraValue">参数值</param>
+            <param name="paraSize">参数值长度</param>
+        </member>
+        <member name="M:NSYGShop.OracleManagerParameter.AddOrcNewInParameterEx(System.String,System.String)">
+            <summary>
+            Oracle添加Clob输入参数
+            超过4K长度的字符串用此传入
+            </summary>
+            <param name="paraName">参数名</param>
+            <param name="paraValue">参数值</param>
+        </member>
+        <member name="M:NSYGShop.OracleManagerParameter.AddOrcNewInParameter(System.String,System.DateTime)">
+            <summary>
+            Oracle添加DateTime输入参数
+            </summary>
+            <param name="paraName">参数名</param>
+            <param name="paraValue">参数值</param>
+        </member>
+        <member name="M:NSYGShop.OracleManagerParameter.AddOrcNewInParameter(System.String,System.Int32)">
+            <summary>
+            Oracle添加Int32输入参数
+            </summary>
+            <param name="paraName">参数名</param>
+            <param name="paraValue">参数值</param>
+        </member>
+        <member name="M:NSYGShop.OracleManagerParameter.AddOrcNewInParameter(System.String,System.Int64)">
+            <summary>
+            Oracle添加Int64输入参数
+            </summary>
+            <param name="paraName">参数名</param>
+            <param name="paraValue">参数值</param>
+        </member>
+        <member name="M:NSYGShop.OracleManagerParameter.AddOrcNewInParameter(System.String,System.Double)">
+            <summary>
+            Oracle添加Double输入参数
+            </summary>
+            <param name="paraName">参数名</param>
+            <param name="paraValue">参数值</param>
+        </member>
+        <member name="M:NSYGShop.OracleManagerParameter.AddOrcNewInParameter(System.String,System.Decimal)">
+            <summary>
+            Oracle添加Decimal输入参数
+            </summary>
+            <param name="paraName">参数名</param>
+            <param name="paraValue">参数值</param>
+        </member>
+        <member name="M:NSYGShop.OracleManagerParameter.AddOrcNewOutParameter(System.String,System.Int32,System.Int32)">
+            <summary>
+            Oracle添加输出参数
+            </summary>
+            <param name="paraName">参数名</param>
+            <param name="dbType">0：字符串，1：数字</param>
+            <param name="size">参数长度，不定义会报异长[ORA-06502: PL/SQL: numeric or value error]</param>
+        </member>
+        <member name="M:NSYGShop.OracleManagerParameter.AddOrcNewCursorParameter(System.String)">
+            <summary>
+            Oracle添加游标参数
+            </summary>
+            <param name="paraName">参数名</param>
+        </member>
+        <member name="M:NSYGShop.OracleManagerParameter.AddOrcNewReturnParameter(System.String,System.Int32)">
+            <summary>
+            Oracle添加返回值参数
+            </summary>
+            <param name="paraName">参数名</param>
+            <param name="dbType">0：字符串，1：数字</param>
+        </member>
+        <member name="M:NSYGShop.OracleManagerParameter.AddOrcNewModuleParameter(System.String)">
+            <summary>
+            Oracle添加统一输入的模块化参数Module值
+            </summary>
+            <param name="moduleValue">Module值</param>
+        </member>
+        <member name="P:NSYGShop.OracleManagerParameter.Item(System.String)">
+            <summary>
+            对参数的一种封装
+            </summary>
+            <param name="parameterName">参数名称</param>
+            <returns></returns>
+        </member>
+        <member name="P:NSYGShop.OracleManagerParameter.Item(System.Int32)">
+            <summary>
+            对参数的一种封装
+            </summary>
+            <param name="parameterIndex">参数名称</param>
+            <returns></returns>
+        </member>
+        <member name="T:NSYGShop.OracleManagerTran">
+            <summary>
+            关于事务的处理
+            </summary>
+        </member>
+        <member name="F:NSYGShop.OracleManagerTran._Dal">
+            <summary>
+            数据访问函数库的实例，主要是想操作Connection
+            </summary>
+        </member>
+        <member name="F:NSYGShop.OracleManagerTran._DbTran">
+            <summary>
+            用于事务处理
+            </summary>
+        </member>
+        <member name="M:NSYGShop.OracleManagerTran.TranBegin">
+            <summary>
+            打开连接，并且开始事务。
+            </summary>
+        </member>
+        <member name="M:NSYGShop.OracleManagerTran.TranCommit">
+            <summary>
+            提交事务，并关闭连接
+            </summary>
+        </member>
+        <member name="M:NSYGShop.OracleManagerTran.TranRollBack">
+            <summary>
+            回滚事务，并关闭连接。在程序出错的时候，自动调用。
+            </summary>
+        </member>
+        <member name="T:NSYGShop.MonitorComm">
+            <summary>
+            监控数据库过程调用的工具类
+            </summary>
+        </member>
+        <member name="F:NSYGShop.MonitorComm.DictMonitor">
+            <summary>
+            存储统计数据
+            </summary>
+        </member>
+        <member name="F:NSYGShop.MonitorComm.DictLockObj">
+            <summary>
+            锁对象
+            </summary>
+        </member>
+        <member name="F:NSYGShop.MonitorComm.LogLockObj">
+            <summary>
+            写日志锁对象
+            </summary>
+        </member>
+        <member name="F:NSYGShop.MonitorComm.SaveLogFlag">
+            <summary>
+            写日志标记
+            </summary>
+        </member>
+        <member name="M:NSYGShop.MonitorComm.IncModuleExecuteNum(System.String)">
+            <summary>
+            累加过程的调用次数
+            </summary>
+            <param name="moduleID">过程编号</param>
+            <param name="invokePlat">调用平台：0.未知，1.PC，2.触屏，3.安卓，4.微信，5.苹果</param>
+        </member>
+        <member name="M:NSYGShop.MonitorComm.IncModuleExecuteNum(System.Object)">
+            <summary>
+            累加过程的调用次数
+            </summary>
+            <param name="moduleID">过程编号</param>
+            <param name="invokePlat">调用平台：0.未知，1.PC，2.触屏，3.安卓，4.微信，5.苹果</param>
+        </member>
+        <member name="M:NSYGShop.MonitorComm.WriteExecuteLogToDB">
+            <summary>
+            保存调用记录到数据库
+            </summary>
+        </member>
+        <member name="M:NSYGShop.MdlMonitor.#ctor">
+            <summary>
+            构造方法 初始化属性
+            </summary>
+        </member>
+        <member name="P:NSYGShop.MdlMonitor.DictInvokers">
+            <summary>
+            存储调用过程统计数据
+            moduleID:num
+            </summary>
+        </member>
+        <member name="P:NSYGShop.MdlMonitor.LockObj">
+            <summary>
+            锁对象
+            </summary>
+        </member>
+        <member name="T:NSYGShop.Tools">
+            <summary>
+            数据访问DLL内部工具类
+            </summary>
+        </member>
+        <member name="F:NSYGShop.Tools.LogSiteUrl">
+            <summary>
+            接收POST日志的日志站点地址
+            </summary>
+        </member>
+        <member name="M:NSYGShop.Tools.GetConfigStr(System.String)">
+            <summary>
+            获取配置文件中的AppSettings健值
+            </summary>
+            <param name="key">配置值的项名</param>
+            <returns></returns>
+        </member>
+        <member name="M:NSYGShop.Tools.ToInt32(System.String)">
+            <summary>
+            转换为整数
+            </summary>
+            <param name="number"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NSYGShop.Tools.CreateLogXml(System.String,System.String,System.String,System.String)">
+            <summary>
+            创建日志xml内容
+            </summary>
+            <param name="logTime">记录时间</param>
+            <param name="moduleID">模块ID</param>
+            <param name="plat">平台</param>
+            <param name="executeNum">调用次数</param>
+            <returns></returns>
+        </member>
+        <member name="M:NSYGShop.Tools.HttpPostXml(System.String,System.String,System.String,System.String)">
+            <summary>
+            http发送post请求，往日志系统站点写入xml日志内容
+            </summary>
+            <param name="logTime">记录时间</param>
+            <param name="moduleID">模块ID</param>
+            <param name="plat">平台</param>
+            <param name="executeNum">调用次数</param>
+            <returns></returns>
+        </member>
+        <member name="M:NSYGShop.Tools.AddLogErrMsg(System.String)">
+            <summary>
+            记录错误跟踪日志
+            </summary>
+            <param name="msg">错误描述信息，即保存到日志文件里的信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:NSYGShop.Tools.AddLogErrMsg(System.String,System.String)">
+            <summary>
+            记录错误跟踪日志
+            </summary>
+            <param name="logType">日志类型</param>
+            <param name="msg">错误描述信息，即保存到日志文件里的信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:NSYGShop.Tools.WriteLogErrMsg(System.String,System.String)">
+            <summary>
+            记录错误跟踪日志，/log/{path}/yyyyMMddHH.txt
+            </summary>
+            <param name="path">{path}路径</param>
+            <param name="msg">错误描述信息，即保存到日志文件里的信息</param>
+        </member>
+        <member name="M:NSYGShop.Tools.ExistsPath(System.String,System.Boolean)">
+            <summary>
+            检查目录是否存在
+            </summary>
+            <param name="phyPath">目录绝对物理地址</param>
+            <param name="isCreate">不存在是否创建目录</param>
+            <returns></returns>
+        </member>
+        <member name="M:NSYGShop.Tools.WriteMsg(System.String,System.String,System.Boolean)">
+            <summary>
+            保存文件内容到指定的文件
+            </summary>
+            <param name="fileUrl">文件完整的物理路径包括文件名</param>
+            <param name="msg">内容</param>
+            <param name="isAppend">是否追加内容(false:覆盖)</param>
+        </member>
+        <member name="M:NSYGShop.Tools.WriteClearPollFile(System.Int32)">
+            <summary>
+            清除相应节点的数据库连接池
+            0为不清除，-1为清除全部连接池，大于0则为清除对应的连接池
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NSYGShop.Tools.ReadClearPoolFile">
+            <summary>
+            读取是否清除相应节点的数据库连接池配置
+            0为不清除，-1为清除全部连接池，大于0则为清除对应的连接池
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NSYGShop.Tools.CreateWcfLogXml(System.DateTime,System.String,System.String,System.Int32)">
+            <summary>
+            创建日志xml内容
+            </summary>
+            <param name="logTime">记录时间</param>
+            <param name="moduleID">模块ID</param>
+            <param name="plat">平台</param>
+            <param name="executeNum">调用次数</param>
+            <returns></returns>
+        </member>
+        <member name="M:NSYGShop.Tools.WriteFunctionExecuteNum(System.DateTime,System.String,System.String,System.Int32)">
+            <summary>
+            http发送post请求，往日志系统站点写入xml日志内容
+            </summary>
+            <param name="logTime">记录时间</param>
+            <param name="moduleID">模块ID</param>
+            <param name="plat">平台</param>
+            <param name="executeNum">调用次数</param>
+            <returns></returns>
+        </member>
+        <member name="M:NSYGShop.Tools.GetDBnodeConfig">
+            <summary>
+            读取数据库可连接结点配置
+            多个结点间英文逗号隔开
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

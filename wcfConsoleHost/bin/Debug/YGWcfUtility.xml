@@ -1,0 +1,766 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>YGWcfUtility</name>
+    </assembly>
+    <members>
+        <member name="T:wcfNSYGShop.MDLUpdateCouch">
+            <summary>
+            定义更新缓存所需的设置参数
+            </summary>
+        </member>
+        <member name="M:wcfNSYGShop.MDLUpdateCouch.#ctor(System.String,System.Int32)">
+            <summary>
+            构造方法
+            </summary>
+            <param name="key">缓存键名</param>
+            <param name="timeout">数据缓存的时间(秒)，为0时则永久保存</param>
+        </member>
+        <member name="M:wcfNSYGShop.MDLUpdateCouch.#ctor(System.String,System.DateTime)">
+            <summary>
+            构造方法
+            </summary>
+            <param name="key">缓存键名</param>
+            <param name="timeout">数据缓存的时间(秒)，为0时则永久保存</param>
+        </member>
+        <member name="P:wcfNSYGShop.MDLUpdateCouch.WaitTime">
+            <summary>
+            更新缓存所需时间(毫秒)
+            </summary>
+        </member>
+        <member name="P:wcfNSYGShop.MDLUpdateCouch.CheckTime">
+            <summary>
+            检测是否已更新的间隔时间(毫秒)
+            </summary>
+        </member>
+        <member name="P:wcfNSYGShop.MDLUpdateCouch.Key">
+            <summary>
+            缓存键名
+            </summary>
+        </member>
+        <member name="P:wcfNSYGShop.MDLUpdateCouch.TimeOut">
+            <summary>
+            数据缓存的时间(毫秒)
+            为0时则永久保存
+            </summary>
+        </member>
+        <member name="P:wcfNSYGShop.MDLUpdateCouch.ExpireTime">
+            <summary>
+            数据缓存过期的具体时间
+            </summary>
+        </member>
+        <member name="T:wcfNSYGShop.CouchBaseClient">
+            <summary>
+            操作一级缓存的类，建议使用using实例化
+            </summary>
+        </member>
+        <member name="M:wcfNSYGShop.CouchBaseClient.#ctor">
+            <summary>
+            默认构造函数
+            </summary>
+        </member>
+        <member name="M:wcfNSYGShop.CouchBaseClient.#ctor(System.Int32)">
+            <summary>
+            0:Couchbase型，1:纯内存型公共型，2:纯内存个体型
+            </summary>
+        </member>
+        <member name="M:wcfNSYGShop.CouchBaseClient.#ctor(System.String,System.String)">
+            <summary>
+            默认构造函数
+            </summary>
+        </member>
+        <member name="F:wcfNSYGShop.CouchBaseClient.updateSuffix">
+            <summary>
+            更新缓存时的更新标识
+            </summary>
+        </member>
+        <member name="M:wcfNSYGShop.CouchBaseClient.SetObject(System.String,System.Object)">
+            <summary>
+            重置缓存对象
+            不存在则创建，存在则替换
+            长期有效
+            </summary>
+            <param name="key">键</param>
+            <param name="value">值</param>
+            <returns></returns>
+        </member>
+        <member name="M:wcfNSYGShop.CouchBaseClient.SetObject(System.String,System.Object,System.Double)">
+            <summary>
+            重置缓存对象
+            不存在则创建，存在则替换
+            </summary>
+            <param name="key">键</param>
+            <param name="value">值</param>
+            <param name="time">缓存时间：毫秒</param>
+            <returns></returns>
+        </member>
+        <member name="M:wcfNSYGShop.CouchBaseClient.SetObject(System.String,System.Object,System.DateTime)">
+            <summary>
+            重置缓存对象
+            不存在则创建，存在则替换
+            </summary>
+            <param name="key">键</param>
+            <param name="value">值</param>
+            <param name="expireTime">缓存过期具体时间</param>
+            <returns></returns>
+        </member>
+        <member name="M:wcfNSYGShop.CouchBaseClient.SetJsonObject(System.String,System.Object,System.Double)">
+            <summary>
+            重置缓存对象，适用Json对象
+            不存在则创建，存在则替换
+            </summary>
+            <param name="key">键</param>
+            <param name="value">值</param>
+            <param name="time">缓存时间：毫秒</param>
+            <returns></returns>
+        </member>
+        <member name="M:wcfNSYGShop.CouchBaseClient.SetJsonObject(System.String,System.Object)">
+            <summary>
+            重置缓存对象,长期有效，适用Json对象
+            </summary>
+            <param name="key">键</param>
+            <param name="value">值</param>
+            <returns></returns>
+        </member>
+        <member name="M:wcfNSYGShop.CouchBaseClient.Increment(System.String,System.UInt64,System.UInt64,System.Double)">
+            <summary>
+            对缓存内容值自增，限ulong类型
+            </summary>
+            <param name="key">键</param>
+            <param name="defaultValue">不存在时默认值</param>
+            <param name="step">自增幅度</param>
+            <param name="time">缓存时间：毫秒</param>
+            <returns></returns>
+        </member>
+        <member name="M:wcfNSYGShop.CouchBaseClient.Increment(System.String,System.UInt64,System.UInt64)">
+            <summary>
+            对缓存内容值自增，限ulong类型
+            </summary>
+            <param name="key">键</param>
+            <param name="defaultValue">不存在时默认值</param>
+            <param name="step">自增幅度</param>
+            <returns></returns>
+        </member>
+        <member name="M:wcfNSYGShop.CouchBaseClient.AddObject(System.String,System.Object)">
+            <summary>
+            添加缓存对象
+            存在则会添加失败
+            </summary>
+            <param name="key">键</param>
+            <param name="value">值</param>
+            <returns></returns>
+        </member>
+        <member name="M:wcfNSYGShop.CouchBaseClient.AddObject(System.String,System.Object,System.Double)">
+            <summary>
+            添加缓存对象
+            存在则会添加失败
+            </summary>
+            <param name="key">键</param>
+            <param name="value">值</param>
+            <param name="time">缓存时间：毫秒</param>
+            <returns></returns>
+        </member>
+        <member name="M:wcfNSYGShop.CouchBaseClient.RemoveObject(System.String)">
+            <summary>
+            移除缓存对象
+            </summary>
+            <param name="key">键</param>
+            <returns></returns>
+        </member>
+        <member name="M:wcfNSYGShop.CouchBaseClient.IsExsits(System.String)">
+            <summary>
+            判断缓存对象是否已存在
+            </summary>
+            <param name="key">键</param>
+            <returns></returns>
+        </member>
+        <member name="M:wcfNSYGShop.CouchBaseClient.IsExsits(System.String,System.Double)">
+            <summary>
+            判断缓存对象是否已存在并设定过期时间
+            </summary>
+            <param name="key">键</param>
+            <returns></returns>
+        </member>
+        <member name="M:wcfNSYGShop.CouchBaseClient.GetObject(System.String,System.Object@)">
+            <summary>
+            获取缓存对象
+            取值成功则返回True
+            </summary>
+            <param name="key">键</param>
+            <param name="tmp">用来存值的变量</param>
+            <returns></returns>
+        </member>
+        <member name="M:wcfNSYGShop.CouchBaseClient.GetObject``1(System.String)">
+            <summary>
+            获取缓存对象
+            获值失败则返回default(T)
+            </summary>
+            <param name="key">键</param>
+            <returns></returns>
+        </member>
+        <member name="M:wcfNSYGShop.CouchBaseClient.GetJson``1(System.String,``0@)">
+            <summary>
+            获取缓存对象
+            获值失败则返回default(T)
+            </summary>
+            <param name="key">键</param>
+            <returns></returns>
+        </member>
+        <member name="M:wcfNSYGShop.CouchBaseClient.GetCouchData``1(wcfNSYGShop.MDLUpdateCouch,wcfNSYGShop.CouchBaseClient.GetDataSourceDelegate{``0},System.Object[])">
+            <summary>
+            从缓存中获取数据
+            </summary>
+            <typeparam name="T">返回泛型数据</typeparam>
+            <param name="model">更新缓存的配置实体</param>
+            <param name="dtm">数据源调用方法</param>
+            <param name="paraList">数据源所需参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:wcfNSYGShop.CouchBaseClient.GetCouchJsonData``1(wcfNSYGShop.MDLUpdateCouch,``0@,wcfNSYGShop.CouchBaseClient.GetDataSourceDelegate{``0},System.Object[])">
+            <summary>
+            从缓存中获取数据，适用于Json对象数据
+            </summary>
+            <typeparam name="T">返回泛型数据</typeparam>
+            <param name="model">更新缓存的配置实体</param>
+            <param name="jsonData">获取的Json内容</param>
+            <param name="dtm">数据源调用方法</param>
+            <param name="paraList">数据源所需参数</param>
+            <returns></returns>
+        </member>
+        <member name="T:wcfNSYGShop.CouchBaseClient.GetDataSourceDelegate`1">
+            <summary>
+            获取数据库的数据源的委托
+            </summary>
+            <typeparam name="T">返回泛型数据</typeparam>
+            <param name="paraList">参数集合</param>
+            <returns></returns>
+        </member>
+        <member name="F:wcfNSYGShop.CouchBaseFactory._CouchbaseClient">
+            <summary>
+            内存加备份型公共缓存操作对象
+            </summary>
+        </member>
+        <member name="F:wcfNSYGShop.CouchBaseFactory._CouchbaseClientHot">
+            <summary>
+            内存型公共缓存操作对象
+            </summary>
+        </member>
+        <member name="F:wcfNSYGShop.CouchBaseFactory._CouchbaseClientUser">
+            <summary>
+            内存型个体缓存操作对象
+            </summary>
+        </member>
+        <member name="F:wcfNSYGShop.CouchBaseFactory._CouchbaseClientEx">
+            <summary>
+            可用于临时创建缓存对象
+            </summary>
+        </member>
+        <member name="M:wcfNSYGShop.CouchBaseFactory.#cctor">
+            <summary>
+            静态初始化，可以进行默认设置
+            </summary>
+        </member>
+        <member name="M:wcfNSYGShop.CouchBaseFactory.CreateClientHot">
+            <summary>
+            初始内存型公共缓存操作对象
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:wcfNSYGShop.CouchBaseFactory.CreateClientUser">
+            <summary>
+            初始内存型个体缓存操作对象
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:wcfNSYGShop.CouchBaseFactory.CreateClient(System.String,System.String)">
+            <summary>
+            创建新的CouchbaseClient实例对象
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:wcfNSYGShop.CouchBaseFactory.GetClient">
+            <summary>
+            获取CouchbaseClient实例对象
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:wcfNSYGShop.CouchBaseFactory.GetClientHot">
+            <summary>
+            获取CouchbaseClient实例对象
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:wcfNSYGShop.CouchBaseFactory.GetClientUser">
+            <summary>
+            获取CouchbaseClient实例对象
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:wcfNSYGShop.Log4netHelper">
+            <summary>
+            Log4net写日志工具类
+            </summary>
+        </member>
+        <member name="M:wcfNSYGShop.Log4netHelper.WriteLog(System.Type,System.Exception)">
+            <summary>
+            输出日志到Log4Net
+            </summary>
+            <param name="t"></param>
+            <param name="ex"></param>
+        </member>
+        <member name="M:wcfNSYGShop.Log4netHelper.WriteSubmitTrade(System.String)">
+            <summary>
+            记录交易请求提交记录
+            </summary>
+            <param name="msg">信息内容</param>
+        </member>
+        <member name="M:wcfNSYGShop.Log4netHelper.WriteBuyTime(System.String)">
+            <summary>
+            记录交易成功记录的信息
+            </summary>
+            <param name="msg">信息内容</param>
+        </member>
+        <member name="M:wcfNSYGShop.Log4netHelper.WriteBuyRnoIndex(System.String)">
+            <summary>
+            记录交易条码的云购码信息
+            </summary>
+            <param name="msg">信息内容</param>
+        </member>
+        <!-- 对于成员“T:wcfNSYGShop.UtilityCryptography”忽略有格式错误的 XML 注释 -->
+        <member name="M:wcfNSYGShop.UtilityCryptography.Encrypt(System.String,System.Int32)">
+            <summary>
+            SHA1(1)，MD5(2)加密,默认为UTF8字符集，返回的字母为大写
+            </summary>
+            <param name="sourceData">待加密的字符串</param>
+            <param name="T">1.sha1  2.md5</param>
+            <returns></returns>
+        </member>
+        <member name="M:wcfNSYGShop.UtilityCryptography.Encrypt(System.String,System.Int32,System.String)">
+            <summary>
+            SHA1(1)，MD5(2)加密,默认为UTF8字符集，返回的字母为大写
+            </summary>
+            <param name="sourceData">待加密的字符串</param>
+            <param name="T">1.sha1  2.md5</param>
+            <param name="encoding">字符集：utf8,gb2312</param>
+            <returns></returns>
+        </member>
+        <member name="M:wcfNSYGShop.UtilityCryptography.Encrypt(System.String,System.Byte[],System.Byte[])">
+            <summary>
+            加密，公共函数
+            </summary>
+            <param name="sourceData">原文</param>
+            <param name="key">密钥1</param>
+            <param name="key">密钥2</param>
+            <returns></returns>
+        </member>
+        <member name="M:wcfNSYGShop.UtilityCryptography.Decrypt(System.String,System.Byte[],System.Byte[])">
+            <summary>
+            解密，公共函数
+            </summary>
+            <param name="sourceData">密文</param>
+            <param name="key">密钥1</param>
+            <param name="key">密钥2</param>
+            <returns></returns>
+        </member>
+        <member name="M:wcfNSYGShop.UtilityCryptography.Encrypt(System.String)">
+            <summary>
+            DES加密,默认密钥为配置文件中的cryKey
+            ,加密失败返回""值
+            </summary>
+            <param name="Text"></param>
+            <returns></returns>
+        </member>
+        <member name="M:wcfNSYGShop.UtilityCryptography.Encrypt(System.String,System.String)">
+            <summary> 
+            DES加密数据,加密失败返回""值
+            </summary> 
+            <param name="Text"></param> 
+            <param name="sKey"></param> 
+            <returns></returns> 
+        </member>
+        <member name="M:wcfNSYGShop.UtilityCryptography.Decrypt(System.String)">
+            <summary>
+            DES解密,解密失败返回""值
+            默认密钥为配置文件中的cryKey
+            </summary>
+            <param name="Text"></param>
+            <returns></returns>
+        </member>
+        <member name="M:wcfNSYGShop.UtilityCryptography.Decrypt(System.String,System.String)">
+            <summary> 
+            DES解密数据,解密失败返回""值
+            </summary> 
+            <param name="Text"></param> 
+            <param name="sKey"></param> 
+            <returns></returns> 
+        </member>
+        <member name="M:wcfNSYGShop.UtilityCryptography.AESEncrypt(System.String,System.String)">
+            <summary>
+            AES加密
+            </summary>
+            <param name="toEncrypt">需要加密的字符串</param>
+            <param name="key">加密密钥</param>
+            <returns></returns>
+        </member>
+        <member name="M:wcfNSYGShop.UtilityCryptography.AESEncrypt(System.String)">
+            <summary>
+            AES加密(默认使用配置文件中的密钥)
+            </summary>
+            <param name="toEncrypt">需要加密的字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:wcfNSYGShop.UtilityCryptography.AESDecrypt(System.String,System.String)">
+            <summary>
+            AES解密
+            </summary>
+            <param name="toDecrypt">需要解密的字符串</param>
+            <param name="key">解密密钥</param>
+            <returns></returns>
+        </member>
+        <member name="M:wcfNSYGShop.UtilityCryptography.AESDecrypt(System.String)">
+            <summary>
+            AES解密(默认使用配置文件中的密钥)
+            </summary>
+            <param name="toDecrypt">需要解密的字符串</param>
+            <returns></returns>
+        </member>
+        <member name="F:wcfNSYGShop.UtilityFile.LogSiteUrl">
+            <summary>
+            日志站点接收post日志的地址
+            </summary>
+        </member>
+        <member name="M:wcfNSYGShop.UtilityFile.AddLogMsg(System.String)">
+            <summary>
+            记录操作缓存错误日志
+            /log/cached/目录下
+            </summary>
+            <param name="msg">描述信息，即保存到日志文件里的信息</param>
+        </member>
+        <member name="M:wcfNSYGShop.UtilityFile.AddLogErrMsg(System.String)">
+            <summary>
+            记录错误日志，/log目录下
+            </summary>
+            <param name="msg">描述信息，即保存到日志文件里的信息</param>
+        </member>
+        <member name="M:wcfNSYGShop.UtilityFile.AddLogErrMsg(System.String,System.String)">
+            <summary>
+            记录错误跟踪日志，/log/{path}/yyyyMMddHH.txt
+            </summary>
+            <param name="path">{path}路径</param>
+            <param name="msg">错误描述信息，即保存到日志文件里的信息</param>
+        </member>
+        <member name="M:wcfNSYGShop.UtilityFile.AddLogMsgToLogSys(System.String)">
+            <summary>
+            记录错误日志到日志系统
+            </summary>
+            <param name="msg">日志描述信息</param>
+        </member>
+        <member name="M:wcfNSYGShop.UtilityFile.AddLogMsgToLogSys(System.String,System.String)">
+            <summary>
+            记录错误日志到日志系统
+            </summary>
+            <param name="logType">日志类型</param>
+            <param name="msg">日志描述信息</param>
+        </member>
+        <member name="M:wcfNSYGShop.UtilityFile.AddLogMsgToLogSys(wcfNSYGShop.LogInfo)">
+            <summary>
+            记录错误日志到日志系统
+            </summary>
+            <param name="model">日志信息Model</param>
+            <returns></returns>
+        </member>
+        <member name="M:wcfNSYGShop.UtilityFile.CreateLogXml(wcfNSYGShop.LogInfo)">
+            <summary>
+            创建日志xml内容
+            </summary>
+            <param name="model">日志信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:wcfNSYGShop.UtilityFile.HttpPostXml(System.String,System.String)">
+            <summary>
+            http发送post请求，往日志系统站点写入xml日志内容
+            </summary>
+            <param name="url">日志系统站点接收地址</param>
+            <param name="postXml">post的xml内容</param>
+            <returns></returns>
+        </member>
+        <member name="M:wcfNSYGShop.UtilityFile.ExistsPath(System.String,System.Boolean)">
+            <summary>
+            检查目录是否存在
+            </summary>
+            <param name="phyPath">目录绝对物理地址</param>
+            <param name="isCreate">不存在是否创建目录</param>
+            <returns></returns>
+        </member>
+        <member name="M:wcfNSYGShop.UtilityFile.WriteMsg(System.String,System.String,System.Boolean)">
+            <summary>
+            保存文件内容到指定的文件
+            </summary>
+            <param name="fileUrl">文件完整的物理路径包括文件名</param>
+            <param name="msg">内容</param>
+            <param name="isAppend">是否追加内容(false:覆盖)</param>
+        </member>
+        <member name="M:wcfNSYGShop.UtilityFile.CheckFile(System.String)">
+            <summary>
+            检查文件是否存在
+            </summary>
+            <param name="vritualPath">相对路径</param>
+            <returns>存在：true</returns>
+        </member>
+        <member name="M:wcfNSYGShop.UtilityFile.GetPhyPath(System.String)">
+            <summary>
+            获取相对文件路径的绝对物理路径
+            </summary>
+            <param name="nameStr">配置值的项名</param>
+            <returns></returns>
+        </member>
+        <member name="M:wcfNSYGShop.UtilityFile.ReadFile(System.String)">
+            <summary>
+            读取某文本文件的所有内容
+            </summary>
+            <param name="vritualPath">相对路径</param>
+            <returns>返回文本内容</returns>
+        </member>
+        <member name="M:wcfNSYGShop.UtilityFile.ReadFile(System.String,System.String)">
+            <summary>
+            读取某文本文件的所有内容, 不存在返回默认内容
+            </summary>
+            <param name="vritualPath">相对路径</param>
+            <param name="defaultStr">当文件不存在时返回指定内容</param>
+            <returns>返回文本内容</returns>
+        </member>
+        <member name="M:wcfNSYGShop.UtilityFile.WriteSystemSwitchFile(System.Int32)">
+            <summary>
+            写服务程序是否设置为启动
+            0不可用，1可用。
+            </summary>
+            <param name="swtichNO"></param>
+            <returns></returns>
+        </member>
+        <member name="M:wcfNSYGShop.UtilityFile.ReadSystemSwitchFile">
+            <summary>
+            读服务程序是否启动的设置值
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:wcfNSYGShop.UtilityFile.ReadMonitorSwitchFile">
+            <summary>
+            读服务程序是否启用临控日志的设置值
+            1为启用，0为不启用
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:wcfNSYGShop.UtilityFile.WriteClearPollFile(System.Int32)">
+            <summary>
+            是否清除相应节点的数据库连接池
+            0为不清除，-1为清除全部连接池，大于0则为清除对应的连接池
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:wcfNSYGShop.UtilityFile.CreateLogXml(System.String,System.String,System.String,System.Int32)">
+            <summary>
+            创建日志xml内容
+            </summary>
+            <param name="model">日志信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:wcfNSYGShop.UtilityFile.HttpPostXml(System.DateTime,System.String,System.String,System.Int32)">
+            <summary>
+            http发送post请求，往日志系统站点写入xml日志内容
+            </summary>
+            <param name="url">日志系统站点接收地址</param>
+            <param name="postXml">post的xml内容</param>
+            <returns></returns>
+        </member>
+        <member name="T:wcfNSYGShop.LogInfo">
+            <summary>
+            日志Model
+            </summary>
+        </member>
+        <member name="P:wcfNSYGShop.LogInfo.LogMsg">
+            <summary>
+            日志主要信息
+            </summary>
+        </member>
+        <member name="P:wcfNSYGShop.LogInfo.LogOtherMsg">
+            <summary>
+            日志附加信息
+            </summary>
+        </member>
+        <member name="P:wcfNSYGShop.LogInfo.LogGrade">
+            <summary>
+            日志等级
+            </summary>
+        </member>
+        <member name="P:wcfNSYGShop.LogInfo.LogType">
+            <summary>
+            日志分类
+            </summary>
+        </member>
+        <member name="P:wcfNSYGShop.LogInfo.WebDomain">
+            <summary>
+            日志来源站点
+            </summary>
+        </member>
+        <member name="P:wcfNSYGShop.LogInfo.PageUrl">
+            <summary>
+            日志来源页面地址
+            </summary>
+        </member>
+        <member name="F:wcfNSYGShop.UtilityFun.MinDTValue">
+            <summary>
+            定义系统中使用最小的日期值，以便兼容数据库或其它系统的最小日期范围
+            </summary>
+        </member>
+        <member name="M:wcfNSYGShop.UtilityFun.GetConfigStr(System.String)">
+            <summary>
+            获取配置文件中的AppSettings健值
+            </summary>
+            <param name="key">配置值的项名</param>
+            <returns></returns>
+        </member>
+        <member name="M:wcfNSYGShop.UtilityFun.GetIntIP(System.String)">
+            <summary>
+            返回客户端的IP地址
+            </summary>
+            <param name="ip">IP地址（格式：255.255.255.255）</param>
+            <returns></returns>
+        </member>
+        <member name="M:wcfNSYGShop.UtilityFun.IsEmptyString(System.String)">
+            <summary>
+            检查字符串是否为空
+            </summary>
+            <param name="str">要检查的字符串</param>
+            <returns>为空返回true;否则返回false;</returns>
+        </member>
+        <member name="M:wcfNSYGShop.UtilityFun.ToDecimal(System.String)">
+            <summary>
+            把字符串转换成Decimal,非Decimal字符串返回0
+            </summary>
+            <param name="refVal">要转换的字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:wcfNSYGShop.UtilityFun.ToInt32(System.Object)">
+            <summary>
+            把对象转换成整型,非整型字符串返回0
+            </summary>
+            <param name="refVal">要转换的对象</param>
+            <returns></returns>
+        </member>
+        <member name="M:wcfNSYGShop.UtilityFun.ToInt32(System.String)">
+            <summary>
+            把字符串转换成整型,非整型字符串返回0
+            </summary>
+            <param name="refVal">要转换的字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:wcfNSYGShop.UtilityFun.ToInt64(System.Object)">
+            <summary>
+            把对象转换成整型,非整型字符串返回0
+            </summary>
+            <param name="refVal">要转换的对象</param>
+            <returns></returns>
+        </member>
+        <member name="M:wcfNSYGShop.UtilityFun.ToInt64(System.String)">
+            <summary>
+            把字符串转换成整型,非整型字符串返回0
+            </summary>
+            <param name="refVal">要转换的字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:wcfNSYGShop.UtilityFun.ToNumber(System.String,System.Int32)">
+            <summary>
+            把字符串转换成整型
+            </summary>
+            <param name="refVal">要转换的字符串</param>
+            <param name="defaultVal">转换失败的缺省值</param>
+            <returns>转换后的整型</returns>
+        </member>
+        <member name="M:wcfNSYGShop.UtilityFun.ToNumber(System.String,System.Int64)">
+            <summary>
+            把字符串转换成整型
+            </summary>
+            <param name="refVal">要转换的字符串</param>
+            <param name="defaultVal">转换失败的缺省值</param>
+            <returns>转换后的整型</returns>
+        </member>
+        <member name="M:wcfNSYGShop.UtilityFun.ToNumber(System.String,System.Decimal)">
+            <summary>
+            把字符串转换成Decimal类型，失败以defaultVal填充
+            </summary>
+            <param name="refVal">要转换的字符串</param>
+            <param name="defaultVal">转换失败的缺省值</param>
+            <returns></returns>
+        </member>
+        <member name="M:wcfNSYGShop.UtilityFun.ToDateTime(System.String)">
+            <summary>
+            把字符串转换成日期类型,出错返回最小日期
+            </summary>
+            <param name="vDateTime">日期字符串</param>
+            <returns>转换后的日期</returns>
+        </member>
+        <member name="M:wcfNSYGShop.UtilityFun.ToDateTime(System.Object)">
+            <summary>
+            把字符串转换成日期类型,出错返回最小日期
+            </summary>
+            <param name="vDateTime">日期对象</param>
+            <returns>转换后的日期</returns>
+        </member>
+        <member name="M:wcfNSYGShop.UtilityFun.ToReplace(System.String,System.String,System.String)">
+            <summary>
+            替换指定字符
+            </summary>
+            <param name="str1">要替换的字符串</param>
+            <param name="str2">要查找的字符串</param>
+            <param name="str3">用来代替的字符串</param>
+            <returns>替换后的字符串</returns>
+        </member>
+        <member name="M:wcfNSYGShop.UtilityFun.RestoreSQLKey(System.String)">
+            <summary>
+            恢复影响SQL的字符
+            </summary>
+            <param name="str">接受检查的字符串</param>
+            <returns>恢复SQL关键字符后的字符串</returns>
+        </member>
+        <member name="M:wcfNSYGShop.UtilityFun.CutString(System.String,System.Int32,System.Boolean)">
+            <summary>
+            字符串截取函数
+            </summary>
+            <param name="inputString">要被截取的字符串</param>
+            <param name="len">截取长度（字符数）</param>
+            <param name="points">是否显示半个省略号</param>
+            <returns>返回截取的字符串</returns>
+        </member>
+        <member name="M:wcfNSYGShop.UtilityFun.GetHideMobileStr(System.String)">
+            <summary>
+            返回加*号的手机号码
+            </summary>
+            <param name="mobile">手机号</param>
+            <returns></returns>
+        </member>
+        <member name="M:wcfNSYGShop.UtilityFun.GetHideEmailStr(System.String)">
+            <summary>
+            返回加*号的邮箱地址
+            </summary>
+            <param name="email">邮箱地址</param>
+            <returns></returns>
+        </member>
+        <member name="M:wcfNSYGShop.UtilityFun.GetHidenUserName(System.Object,System.Object)">
+            <summary>
+            获取符合前台显示的用户名
+            </summary>
+            <param name="mobile">手机号</param>
+            <param name="email">邮箱</param>
+            <returns></returns>
+        </member>
+        <member name="M:wcfNSYGShop.UtilityFun.GetHidenUserName(System.Object,System.Object,System.Object)">
+            <summary>
+            获取符合前台显示的用户名(优先显示顺序：昵称-手机号-邮箱)
+            </summary>
+            <param name="mobile">手机号</param>
+            <param name="email">邮箱</param>
+            <param name="nickName">昵称</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

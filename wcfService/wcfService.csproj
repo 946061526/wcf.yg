@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F02336CD-7FFE-41E9-9879-A35E08C31616}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>wcfNSYGShop</RootNamespace>
+    <AssemblyName>wcfWeb.Service</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <PublishUrl>发布\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.ServiceModel">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="YGWcfUtility">
+      <HintPath>..\..\refDll\YGWcfUtility.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AD.cs" />
+    <Compile Include="Barcode.cs" />
+    <Compile Include="BaseArea.cs" />
+    <Compile Include="Brand.cs" />
+    <Compile Include="Cart.cs" />
+    <Compile Include="CharFilter.cs" />
+    <Compile Include="Comm.cs" />
+    <Compile Include="Package12_\Execute128.cs" />
+    <Compile Include="Package12_\Execute127.cs" />
+    <Compile Include="Package12_\Execute126.cs" />
+    <Compile Include="Package12_\Execute125.cs" />
+    <Compile Include="Package12_\Execute122.cs" />
+    <Compile Include="Package12_\Execute121.cs" />
+    <Compile Include="Package11_\Execute119.cs" />
+    <Compile Include="Package11_\Execute118.cs" />
+    <Compile Include="Package11_\Execute116.cs" />
+    <Compile Include="Package11_\Execute115.cs" />
+    <Compile Include="Package11_\Execute112.cs" />
+    <Compile Include="Package11_\Execute111.cs" />
+    <Compile Include="Package10_\Execute109.cs" />
+    <Compile Include="Package10_\Execute108.cs" />
+    <Compile Include="Package10_\Execute107.cs" />
+    <Compile Include="Package10_\Execute106.cs" />
+    <Compile Include="Package10_\Execute104.cs" />
+    <Compile Include="Package10_\Execute103.cs" />
+    <Compile Include="Package10_\Execute102.cs" />
+    <Compile Include="Package10_\Execute101.cs" />
+    <Compile Include="Package11_\Execute113.cs" />
+    <Compile Include="Package14_\Execute145.cs" />
+    <Compile Include="Package14_\Execute144.cs" />
+    <Compile Include="Package14_\Execute143.cs" />
+    <Compile Include="Package14_\Execute142.cs" />
+    <Compile Include="Package14_\Execute141.cs" />
+    <Compile Include="Package14_\Execute140.cs" />
+    <Compile Include="Package13_\Execute139.cs" />
+    <Compile Include="Package13_\Execute138.cs" />
+    <Compile Include="Package13_\Execute137.cs" />
+    <Compile Include="Package13_\Execute136.cs" />
+    <Compile Include="Package13_\Execute135.cs" />
+    <Compile Include="Package13_\Execute134.cs" />
+    <Compile Include="Package13_\Execute133.cs" />
+    <Compile Include="Package13_\Execute132.cs" />
+    <Compile Include="Package13_\Execute131.cs" />
+    <Compile Include="Package14_\Execute146.cs" />
+    <Compile Include="Package13_\Execute130.cs" />
+    <Compile Include="Package12_\Execute129.cs" />
+    <Compile Include="Package12_\Execute124.cs" />
+    <Compile Include="Package12_\Execute123.cs" />
+    <Compile Include="Package12_\Execute120.cs" />
+    <Compile Include="Package11_\Execute117.cs" />
+    <Compile Include="Package11_\Execute114.cs" />
+    <Compile Include="Package11_\Execute110.cs" />
+    <Compile Include="ExecuteBase.cs" />
+    <Compile Include="Package10_\Execute1001.cs" />
+    <Compile Include="Package10_\Execute105.cs" />
+    <Compile Include="Goods.cs" />
+    <Compile Include="GoodsSort.cs" />
+    <Compile Include="Group.cs" />
+    <Compile Include="Links.cs" />
+    <Compile Include="Map.cs" />
+    <Compile Include="Monitor.cs" />
+    <Compile Include="News.cs" />
+    <Compile Include="Orders.cs" />
+    <Compile Include="Package16_\Execute162.cs" />
+    <Compile Include="Package15_\Execute150.cs" />
+    <Compile Include="Package40_\Execute404.cs" />
+    <Compile Include="Package40_\Execute402.cs" />
+    <Compile Include="Package40_\Execute401.cs" />
+    <Compile Include="PostSingle.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QQ.cs" />
+    <Compile Include="SiteCache.cs" />
+    <Compile Include="UserBuy.cs" />
+    <Compile Include="UserContact.cs" />
+    <Compile Include="UserFriends.cs" />
+    <Compile Include="UserMsg.cs" />
+    <Compile Include="UserPoints.cs" />
+    <Compile Include="Users.cs" />
+    <Compile Include="Weixin.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\wcfContract\wcfContract.csproj">
+      <Project>{AF3311C4-261E-48E5-A8B2-3B8E8FDFC434}</Project>
+      <Name>wcfContract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\wcfDAL\wcfDAL.csproj">
+      <Project>{7BDAD328-62EA-449C-AA4D-2DCFF071ECB4}</Project>
+      <Name>wcfDAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\wcfModel\wcfModel.csproj">
+      <Project>{d41b33c1-ba94-4c7f-bfec-2781b6dd2819}</Project>
+      <Name>wcfModel</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

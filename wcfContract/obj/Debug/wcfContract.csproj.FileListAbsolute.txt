@@ -1,0 +1,5 @@
+E:\Project\1yygWcf\trunk\wcf.1yyg.com\wcfContract\bin\Debug\wcfWeb.Contract.dll
+E:\Project\1yygWcf\trunk\wcf.1yyg.com\wcfContract\bin\Debug\wcfWeb.Contract.pdb
+E:\Project\1yygWcf\trunk\wcf.1yyg.com\wcfContract\obj\Debug\wcfContract.csprojResolveAssemblyReference.cache
+E:\Project\1yygWcf\trunk\wcf.1yyg.com\wcfContract\obj\Debug\wcfWeb.Contract.dll
+E:\Project\1yygWcf\trunk\wcf.1yyg.com\wcfContract\obj\Debug\wcfWeb.Contract.pdb

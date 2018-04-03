@@ -1,0 +1,14 @@
+E:\Project\1yygWcf\trunk\wcf.1yyg.com\wcfDAL\bin\Debug\wcfDAL.dll
+E:\Project\1yygWcf\trunk\wcf.1yyg.com\wcfDAL\bin\Debug\wcfDAL.pdb
+E:\Project\1yygWcf\trunk\wcf.1yyg.com\wcfDAL\bin\Debug\Oracle.DataAccess.dll
+E:\Project\1yygWcf\trunk\wcf.1yyg.com\wcfDAL\bin\Debug\YGDataAccess.dll
+E:\Project\1yygWcf\trunk\wcf.1yyg.com\wcfDAL\bin\Debug\YGWcfUtility.dll
+E:\Project\1yygWcf\trunk\wcf.1yyg.com\wcfDAL\bin\Debug\Couchbase.dll
+E:\Project\1yygWcf\trunk\wcf.1yyg.com\wcfDAL\bin\Debug\log4net.dll
+E:\Project\1yygWcf\trunk\wcf.1yyg.com\wcfDAL\bin\Debug\Enyim.Caching.dll
+E:\Project\1yygWcf\trunk\wcf.1yyg.com\wcfDAL\bin\Debug\Newtonsoft.Json.dll
+E:\Project\1yygWcf\trunk\wcf.1yyg.com\wcfDAL\bin\Debug\YGDataAccess.xml
+E:\Project\1yygWcf\trunk\wcf.1yyg.com\wcfDAL\bin\Debug\YGWcfUtility.xml
+E:\Project\1yygWcf\trunk\wcf.1yyg.com\wcfDAL\obj\Debug\wcfDAL.csprojResolveAssemblyReference.cache
+E:\Project\1yygWcf\trunk\wcf.1yyg.com\wcfDAL\obj\Debug\wcfDAL.dll
+E:\Project\1yygWcf\trunk\wcf.1yyg.com\wcfDAL\obj\Debug\wcfDAL.pdb
